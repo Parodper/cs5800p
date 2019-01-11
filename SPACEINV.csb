@@ -1,0 +1,140 @@
+#This is modified code that i got from the internet, but i could't find the source.
+#You can always try to make it run.
+#Its supposed to be a Space Invaders clone
+
+8→A
+0→C
+0→D
+0→E
+Locate A,4,”I”
+Lbl 3
+0→D
+RanInt#(1,12)→F
+RanInt#(1,6)→G
+RanInt#(1,2)→H
+0→E
+Lbl 0
+If E=F: Then
+  Goto 3
+Else
+  If D=1:Then
+    Goto M
+  Else
+    If D=3:Then
+      Goto T
+    Else
+      Goto 7
+    IfEnd
+  IfEnd
+IfEnd
+Lbl 7
+Locate 1,1,C
+Locate G,H,”M”
+Lbl O
+If Getkey=83:Then Goto L:Else Goto 1:IfEnd
+Lbl 1 If Getkey=86:Then Goto R:Else Goto 2:IfEnd
+Lbl 2
+If Getkey=84:Then Goto F: Else Goto 0:IfEnd
+Lbl L
+E+1→E
+Cls
+A-1→A
+Locate A,4,”A”
+Goto 0
+Lbl R
+E+1→E
+Cls
+A+1→A
+Locate A,4,”A”
+Goto 0
+Lbl F
+If A=G:Then Goto W:Else Goto G:IfEnd
+Lbl G
+If D=1: Then Goto P:Else Goto S:IfEnd
+Lbl S
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3," "
+Locate A,2,"!"
+Locate A,2,"!"
+Locate A,2,"!"
+Locate A,2,"!"
+Locate A,2,"!"
+Locate A,2," "
+Locate A,1,"!"
+Goto 0
+Lbl W
+1→D
+C+1→C
+Lbl 7
+If H=2:Then Goto 5:Else Goto 6:IfEnd
+
+Lbl 6
+Locate A,2,"!"
+Locate A,2,"!"
+Locate A,2,"!"
+Locate A,2,"!"
+Locate A,2,"!"
+Locate A,2," "
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Locate A,1,"%"
+Goto 3
+Lbl M
+Locate 1,1,C
+Locate 5,1," "
+Locate G,2,”M”
+Goto O
+Lbl P
+If A=G: Then Goto V: Else Goto S:IfEnd
+Lbl V
+0→D
+C+1→C
+Goto 7
+Lbl 5
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3,"!"
+Locate A,3," "
+0→F
+Lbl 8
+F+1→F
+Locate A,2,"%"
+If F=2:Then Goto 9:Else Goto 8:IfEnd
+Lbl 9
+Goto 3
