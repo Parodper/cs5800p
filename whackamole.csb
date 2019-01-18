@@ -19,6 +19,7 @@ Lbl 1
 	D->H
 	For 1->Y To G
 		GetKey->C
+		#[EXIT]
 		If C=73:Then Stop:IfEnd
 		#This selects the number keys (1-9)
 		If C>37 Or (C>33 And C<35) Or (C>23 And C<31):Then
@@ -34,6 +35,7 @@ Lbl 1
 			3->F
 			Frac(C/10)*10-4->E
 		IfEnd
+		#If the mole location and the key are equal the score increases
 		If A=E And B=F:Then
 			D+1->D
 			Break
