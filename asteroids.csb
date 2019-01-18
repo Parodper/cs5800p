@@ -1,0 +1,109 @@
+2->A
+RanInt#(2,3)->C
+14->D
+RanInt#(2,3)->F
+16->E
+16->G
+RanInt#(2,3)->H
+16->I
+RanInt#(2,3)->J
+#Points
+0->K
+For 1->Z To 16
+	Locate Z,1,"x"
+	Locate Z,4,"x"
+Next
+Lbl 0
+	#Player
+	Locate 2,A,"->"
+	Do
+		GetKey->B
+		If B=47:Then Goto 1:IfEnd
+
+		#Obstacles
+		Locate D,C,0
+		Locate E,F,0
+		Locate G,H,0
+		Locate I,J,0
+
+		#Moves the obstacle and jumps to the top if it hits the bottom
+		Locate D,C," "
+		D-1->D
+		If D=1:Then
+			RanInt#(2,3)->C
+			16->D
+			K+1->K
+		IfEnd
+
+		Locate E,F," "
+		If E=1:Then
+			RanInt#(2,3)->F
+			16->E
+			K+1->K
+		IfEnd
+
+		Locate G,H," "
+		If E<=13:Then
+			G-1->G
+		IfEnd
+		If G=1:Then
+			RanInt#(2,3)->H
+			16->G
+			K+1->K
+		IfEnd
+
+		Locate I,J," "
+		If D<=14:Then
+			I-1->I
+		IfEnd
+		If I=1:Then
+			RanInt#(2,3)->J
+			16->I
+			K+1->K
+		IfEnd
+
+		GetKey->B
+		If B!=0:Then Goto 1:IfEnd
+
+		#Game ends
+		If D=2 And C=A:Then
+			Goto 3
+		IfEnd
+		If E=2 And F=A:Then
+			Goto 3
+		IfEnd
+		If G=2 And H=A:Then
+			Goto 3
+		IfEnd
+		If I=2 And J=A:Then
+			Goto 3
+		IfEnd
+	LpWhile B!=47
+Lbl 1
+	Locate 2,A," "
+	#Exit key
+	If B=73:Then
+		Goto 3
+	IfEnd
+	#EXE key
+	If B=47 And A=2:Then
+		3->A
+	Else
+		If B=47 And A=3:Then
+			2->A
+		IfEnd
+	IfEnd
+Lbl 2
+	If GetKey=0:Then
+		Goto 0
+	Else
+		Locate 2,A,"->"
+		Goto 2
+	IfEnd
+Lbl 3
+	K@
+	Stop
+
+#Vars: A B C D E F G H I J
+#Goto: 0 1 2 3
+#Objetive: Don't get hit by the Obstacles by pressing EXE to move

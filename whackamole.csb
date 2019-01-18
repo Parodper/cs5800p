@@ -1,0 +1,45 @@
+#Points
+0->D
+#Speed
+20->G
+For 1->Y To 3
+	Locate 1,Y,"[ ]"
+	Locate 4,Y,"[ ]"
+	Locate 7,Y,"[ ]"
+Next
+Lbl 1
+	Locate 14,1,D
+	RanInt#(1,3)->A
+	RanInt#(1,3)->B
+	Locate A*3-1,B,0
+	#Random chance of increasing speed if score changes
+	If RanInt#(0,1) And D!=H:Then
+		G-1->G
+	EndIf
+	D->H
+	For 1->Y To G
+		GetKey->C
+		If C=73:Then Stop:IfEnd
+		#This selects the number keys (1-9)
+		If C>37 Or (C>33 And C<35) Or (C>23 And C<31):Then
+			0->C
+		IfEnd
+		Frac(C/10)*10->E
+		If Int(C/10)=3:Then
+			1->F
+		Else
+			2->F
+		IfEnd
+		If C>34:Then
+			3->F
+			Frac(C/10)*10-4->E
+		IfEnd
+		If A=E And B=F:Then
+			D+1->D
+			Break
+		IfEnd
+	Next
+	Locate A*3-1,B," "
+	Goto 1
+#Var: A B C D E F G
+#Goto: 0 1
