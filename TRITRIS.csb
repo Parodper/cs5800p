@@ -1,0 +1,161 @@
+#This is a Tetris implementation on 3-block pieces. It's also slow.
+
+14->A
+2->B
+0->D
+0->K
+0->DimZ
+60->DimZ
+Cls
+RanInt#(1,6)->C
+Lbl 0
+	If Z[14]+Z[30]+Z[46]+Z[62]>0:Then
+		Goto 3
+	IfEnd
+	If C>1:Then
+		A+1->E
+		B->F
+	Else
+		A->E
+		B+1->F
+		A->G
+		B-1->H
+		Goto 1
+	IfEnd
+	If C=2:Then
+		A-1->G
+		B->H
+	IfEnd
+	If C=3:Then
+		A->G
+		B-1->H
+	IfEnd
+	If C=4:Then
+		A->G
+		B+1->H
+	IfEnd
+	If C=5:Then
+		A+1->G
+		B-1->H
+	IfEnd
+	If C=6:Then
+		A+1->G
+		B+1->H
+	IfEnd
+Lbl 1
+	If A=1 Or E=1 Or G=1:Then
+		Goto 2
+	IfEnd
+	Locate A,B,0
+	Locate E,F,0
+	Locate G,H,0
+	If Z[(A-1) + (B-1)*16] Or Z[(E-1)+(F-1)*16] Or Z[(G-1)+(H-1)*16]:Then
+		Goto 2
+	IfEnd
+	If Not(K):Then
+		GetKey->I
+		If I=73:Then
+			Goto 3
+		IfEnd
+		#Left
+		If I=83:Then
+			#With this flag set it skips key checking, so it goes faster (around 1 sec faster)
+			1->K
+		IfEnd
+		#Up
+		If I=84:Then
+			If B>1 And F>1 And H>1:Then
+				Locate A,B," "
+				Locate E,F," "
+				Locate G,H," "
+				B-1->B
+				F-1->F
+				H-1->H
+				While GetKey!=0:WhileEnd
+				Goto 1
+			IfEnd
+		IfEnd
+		#Down
+		If I=84:Then
+			If B<4 And F<4 And H<4:Then
+				Locate A,B," "
+				Locate E,F," "
+				Locate G,H," "
+				B+1->B
+				F+1->F
+				H+1->H
+				While GetKey!=0:WhileEnd
+				Goto 1
+			IfEnd
+		IfEnd
+		#EXE(Rotate)
+		If I=47:Then
+			Locate A,B," "
+			Locate E,F," "
+			Locate G,H," "
+			If C=1:Then
+				2->C
+				Goto 0
+			IfEnd
+			If C=2:Then
+				1->C
+			IfEnd
+			If C>2:Then
+				If C=6:Then
+					3->C
+				Else
+					C+1->C
+				IfEnd
+			IfEnd
+		Goto 0
+	IfEnd
+	Locate A,B," "
+	Locate E,F," "
+	Locate G,H," "
+	A-1->A
+	E-1->E
+	G-1->G
+	Goto 1
+Lbl 2
+#Colision check
+	0->K
+	1->Z[A+(B-1)*16]
+	1->Z[E+(F-1)*16]
+	1->Z[G+(H-1)*16]
+	For 1->Y To 14
+		If Z[Y]+Z[Y+16]+Z[Y+32]+Z[Y+48]:Then
+			For Y->X To 14
+				Z[X+1]->Z[X]
+				Z[X+17]->Z[X+16]
+				Z[X+33]->Z[X+32]
+				Z[X+49]->Z[X+48]
+				0->Z[X+1]
+				0->Z[X+17]
+				0->Z[X+33]
+				0->Z[X+49]
+			Next
+			D+1->D
+		IfEnd
+	Next
+	Cls
+	For 1->Y To 16
+		For 1->X To 4
+			If Z[X+(X-1)*16]:Then
+				Locate Y,X,0
+			IfEnd
+		Next
+	Next
+	14->A
+	2->B
+	RanInt#(1,6)->C
+	Goto 0
+Lbl 3
+#End
+	D#
+	0->DimZ
+	0->Z
+	Stop
+#Vars: A(X) B(Y) C(Piece) D(Points) E(X) F(Y) G(X) H(Y) I(Key) K(Flag) X Y
+#Gotos:0 1 2 3
+#To know the x and y coordinates of a cell subtract 16 from the number until it's below 16.
+#The number you got its the x coordinates and the number of times you substrated 16 its the y coordenates.
