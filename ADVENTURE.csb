@@ -413,15 +413,4 @@ Lbl A
 
 #Vars:A B C D E F G H I J K L M Y Z
 #Goto:A 0 1
-#Inventory:
-#	H = 1 Weapon
-#	H > 1 Better weapon
-#	I = X Money
-#	L = X Health
-#Save game:
-#To save the game write down the string (Format: AABBFFHHIILL).
-#To load the game input the string digits on pairs (Example: 
-#	? 12
-#	? 34
-# ...)
 #vA 0.7.4
