@@ -1,0 +1,79 @@
+0->A
+0->B
+0->C
+0->D
+0->E
+0->F
+0->G
+0->H
+0->I
+K->J
+1->K
+
+Locate 13,1,"..."
+Locate 13,2,"..."
+Locate 13,3,"..."
+
+While 1
+	Locate 1,1,K
+	While 1
+		If GetKey=33:Then
+			Locate 15,1,K
+			K->C
+			Break
+		IfEnd
+		If GetKey=32:Then
+			Locate 14,1,K
+			K->B
+			Break
+		IfEnd
+		If GetKey=31:Then
+			Locate 13,1,K
+			K->A
+			Break
+		IfEnd
+		If GetKey=23:Then
+			Locate 15,2,K
+			K->F
+			Break
+		IfEnd
+		If GetKey=22:Then
+			Locate 14,2,K
+			K->E
+			Break
+		IfEnd
+		If GetKey=21:Then
+			Locate 13,2,K
+			K->D
+			Break
+		IfEnd
+		If GetKey=37:Then
+			Locate 15,3,K
+			K->I
+			Break
+		IfEnd
+		If GetKey=36:Then
+			Locate 14,3,K
+			K->H
+			Break
+		IfEnd
+		If GetKey=35:Then
+			Locate 13,3,K
+			K->G
+			Break
+		IfEnd
+	WhileEnd
+	If K=1:Then
+		2->K
+	Else 
+		1->K
+	IfEnd
+	If A*B*C=1 OR D*E*F=1 OR G*H*I=1 OR A*D*G=1 OR B*E*H=1 OR C*F*I=1 OR A*E*I=1 OR C*E*G=1:Then
+		"Player 1 wins"
+		Stop
+	IfEnd
+	If A*B*C=8 OR D*E*F=8 OR G*H*I=8 OR A*D*G=8 OR B*E*H=8 OR C*F*I=8 OR A*E*I=8 OR C*E*G=8:Then
+		"Player 2 wins"
+		Stop
+	IfEnd
+WhileEnd
