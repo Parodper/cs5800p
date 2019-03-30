@@ -167,5 +167,3 @@ Lbl 3
 	Stop
 #Vars: A(X) B(Y) C(Piece) D(Points) E(X) F(Y) G(X) H(Y) I(Key) K(Flag) X Y
 #Gotos:0 1 2 3
-#To know the x and y coordinates of a cell subtract 16 from the number until it's below 16.
-#The number you got its the x coordinates and the number of times you substrated 16 its the y coordenates.
