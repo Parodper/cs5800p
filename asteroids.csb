@@ -81,11 +81,11 @@ Lbl 0
 	LpWhile B!=47
 Lbl 1
 	Locate 2,A," "
-	#Exit key
+	#[EXIT]
 	If B=73:Then
 		Goto 3
 	IfEnd
-	#EXE key
+	#[EXE]
 	If B=47 And A=2:Then
 		3->A
 	Else
@@ -106,4 +106,3 @@ Lbl 3
 
 #Vars: A B C D E F G H I J
 #Goto: 0 1 2 3
-#Objetive: Don't get hit by the Obstacles by pressing EXE to move
