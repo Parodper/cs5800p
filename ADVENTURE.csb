@@ -1,3 +1,5 @@
+#For more info go to the wiki
+
 #PosX
 1->A
 #PosY
@@ -22,19 +24,6 @@
 16->J
 #Enemy posY
 4->K
-
-#Room format in pseudocode:
-#If F=RoomNumber:Then
-#	If(Position not is equal to obstacle):Then
-#		Positions = Temp positions
-#	EndIf
-#	If(G = 0):Then
-#		Draw room
-#	EndIf
-#	If(Position = Exit):
-#		Exit
-#	EndIf
-#EndIf
 
 #Rooms
 Lbl 0
@@ -266,17 +255,19 @@ Lbl 0
   #Shop
   If F=6:Then
 	Cls
-	If H=1:Then
-	  "1-1M->Weapon 2"
+	If H>1:Then
+	  Locate 1,1,"1   M->Weapon "
+	  Locate 2,1, 3*H+1
+	  Locate 15,1, H+1
 	IfEnd
-	"2-5M->Health"
+	Locate 1,2,"2 5M->Health"
 	Do
 	  GetKey->C
 	  Locate 16,4,I
 	LpWhile C=0
-	If C=35 And I>=1:Then
+	If C=35 And I>=3*H+1:Then
 	  I-1->I
-	  2->H
+	  H+1->H
 	IfEnd
 	If C=36 And I>=5:Then
 	  I-5->I
@@ -308,7 +299,7 @@ Lbl 0
 	If M=0:Then
 	  RanInt#(2,16)->J
 	  RanInt#(1,4)->K
-	  5->M
+	  H*1.5+5->M
 	IfEnd
 	If L=0:Then
 	  Cls
