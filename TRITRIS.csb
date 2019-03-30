@@ -93,18 +93,28 @@ Lbl 1
 			Locate A,B," "
 			Locate E,F," "
 			Locate G,H," "
+			
 			If C=1:Then
-				2->C
+				If B-1>=1:Then
+					2->C
+				IfEnd
 				Goto 0
 			IfEnd
 			If C=2:Then
-				1->C
+				If B+1<=4:Then
+					1->C
+				IfEnd
 			IfEnd
 			If C>2:Then
-				If C=6:Then
-					3->C
-				Else
+				If (C=3 OR C=5) AND B-1>=1:Then
 					C+1->C
+					Goto 0
+				IfEnd
+				If C=4 AND B+1<=4:Then
+					C+1->C
+				IfEnd
+				If C=6 AND B+1<=4:Then
+					3->C
 				IfEnd
 			IfEnd
 		Goto 0
