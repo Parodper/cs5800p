@@ -161,7 +161,7 @@ Lbl 2
 	Goto 0
 Lbl 3
 #End
-	D#
+	D@
 	0->DimZ
 	0->Z
 	Stop
