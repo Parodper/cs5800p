@@ -1,4 +1,4 @@
-#This is a Tetris implementation on 3-block pieces. It's also slow.
+#Tetris implementation on 3-block pieces
 
 14->A
 2->B
@@ -7,7 +7,7 @@
 0->DimZ
 60->DimZ
 Cls
-RanInt#(1,6)->C
+RanInt#(1,4)->C
 Lbl 0
 	If Z[14]+Z[30]+Z[46]+Z[62]>0:Then
 		Goto 3
@@ -95,28 +95,23 @@ Lbl 1
 			Locate G,H," "
 			
 			If C=1:Then
-				If B-1>=1:Then
-					2->C
-				IfEnd
-				Goto 0
-			IfEnd
+				2->C
+			EndIf
 			If C=2:Then
-				If B+1<=4:Then
-					1->C
-				IfEnd
-			IfEnd
-			If C>2:Then
-				If (C=3 OR C=5) AND B-1>=1:Then
-					C+1->C
-					Goto 0
-				IfEnd
-				If C=4 AND B+1<=4:Then
-					C+1->C
-				IfEnd
-				If C=6 AND B+1<=4:Then
-					3->C
-				IfEnd
-			IfEnd
+				1->C
+			EndIf
+			If C=3:Then
+				5->C
+			EndIf
+			If C=5:Then
+				3->C
+			EndIf
+			If C=4:Then
+				6->C
+			EndIf
+			If C=6:Then
+				4->C
+			EndIf
 		Goto 0
 	IfEnd
 	Locate A,B," "
@@ -166,4 +161,4 @@ Lbl 3
 	0->Z
 	Stop
 #Vars: A(X) B(Y) C(Piece) D(Points) E(X) F(Y) G(X) H(Y) I(Key) K(Flag) X Y
-#Gotos:0 1 2 3
+#Gotos:0(Piece creation) 1(Button events) 2(Colision check) 3(End)
